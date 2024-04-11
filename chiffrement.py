@@ -59,14 +59,14 @@ def dechiffrement(message_chiffre, li):
     for i in intliste:
         refaite.append(lu[i])
     cle = "".join(refaite)
-    dictio={}
+    OO00O0O={}
     carac = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 !@#$%^&*()-_=+[{]}\\|'\";:,<.>/?£¤"
     message_decode=""
     for i in cle:
         r = cle.index(i)
-        dictio[i] = f"{carac[r]}"
+        OO00O0O[i] = f"{carac[r]}"
     for i in message_chiffre:
-        message_decode+=dictio[i]
+        message_decode+=OO00O0O[i]
     return message_decode
 
 def menu():
@@ -93,9 +93,15 @@ def menu():
         subprocess.run("cls", shell=True)
         menu()
     elif choix == 2:
-        txt = input("test à déchiffrer: ")
+        txt = input("texte à déchiffrer: ")
         cle = input("Clé de déchiffrement: ")
-        dec = dechiffrement(txt, cle)
+        try:
+            dec = dechiffrement(txt, cle)
+        except:
+            print("Clé mauvaise.")
+            input("Cliquer sur entrer pour retourner au menu: ")
+            subprocess.run("cls", shell=True)
+            menu()
         print("\n")
         print(f"message déchiffré: {dec}")
         input("Cliquer sur entrer pour retourner au menu: ")
