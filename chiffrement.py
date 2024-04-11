@@ -161,4 +161,47 @@ def menu():
         u=3
         menu()
 
-menu()
+
+def test():
+    x = random.randint(20, 100)
+    carac = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789é!@ $%^&*()-â=+[{]}\\|'\",:à<ù>/?êè!@#_;.£"
+    cle="Hj/Ojf6"
+    rume=""
+    fin=""
+    for i in range(x):
+        f = random.randint(1, 100)
+        rume += carac[f]
+    j = random.randint(15, x)
+    moitun = rume[:j]
+    moitdeux = rume[j:]
+    fin += moitun
+    fin += cle
+    fin += moitdeux
+    droite = str(len(moitun))
+    gauche = len(moitdeux)
+    gauche += 4
+    gauche = str(gauche)
+    if len(droite) == 1:
+        droite = "0"+droite
+    if len(gauche) == 1:
+        gauche = "0"+gauche  
+    fin+=droite
+    fin+=gauche
+    print(fin)
+#test()
+trc = """)-"7VyMty/+. Y5 URHj/Ojf6M_CJ@1509"""
+def detest(trc):
+    to = ""
+    recup = trc[-4:]
+    right = int(recup[:2])
+    left = int(recup[2:])
+    droite = trc[-left:]
+    gauche = trc[:right]
+    print(trc)
+    print(gauche)
+    print(droite)
+    to = trc.replace(gauche, "")
+    to = to.replace(droite, "")
+    print(to)
+
+detest(trc)
