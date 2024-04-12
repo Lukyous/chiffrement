@@ -36,6 +36,29 @@ def chiffrement(message, default_key = None):
             dictio[i] = f"{cle[r]}"
         for i in message:
             mess_chiffr += dictio[i]
+        dix = random.randint(20, 100)
+        onze=mess_chiffr
+        rume=""
+        douze=""
+        for i in range(dix):
+            f = random.randint(1, 100)
+            rume += carac[f]
+        j = random.randint(15, dix)
+        moitun = rume[:j]
+        moitdeux = rume[j:]
+        douze += moitun
+        douze += onze
+        douze += moitdeux
+        droitees = str(len(moitun))
+        gauchees = len(moitdeux)
+        gauchees += 2
+        gauchees = int(gauchees)
+        droitees = int(droitees)
+        droitees = str(carac[droitees])
+        gauchees = str(carac[gauchees])
+        douze+=droitees
+        douze+=gauchees
+        mess_chiffr = douze
         return mu, mess_chiffr
     else:
         symbole = list("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789é!@ $%^&*()-â=+[{]}\\|'\",:à<ù>/?êè!@#_;.£")
@@ -65,9 +88,45 @@ def chiffrement(message, default_key = None):
                     ordre += b
         cle = "".join(liste_div)
         cle += ordre
+        dix = random.randint(20, 100)
+        onze=mess_chiffr
+        rume=""
+        douze=""
+        for i in range(dix):
+            f = random.randint(1, 100)
+            rume += carac[f]
+        j = random.randint(15, dix)
+        moitun = rume[:j]
+        moitdeux = rume[j:]
+        douze += moitun
+        douze += onze
+        douze += moitdeux
+        droitees = str(len(moitun))
+        gauchees = len(moitdeux)
+        gauchees += 2
+        gauchees = int(gauchees)
+        droitees = int(droitees)
+        droitees = str(carac[droitees])
+        gauchees = str(carac[gauchees])
+        douze+=droitees
+        douze+=gauchees
+        mess_chiffr = douze
         return cle, mess_chiffr
 
 def dechiffrement(message_chiffre, li):
+    if r"\N" in message_chiffre and r"\\N" not in message_chiffre:
+        message_chiffre = message_chiffre.replace(r"\N", r"\\N")
+    carac = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789é!@ $%^&*()-â=+[{]}\\|'\",:à<ù>/?êè!@#_;.£"
+    s = ""
+    recupgauche = message_chiffre[-2]
+    recupdroite = message_chiffre[-1]
+    left = carac.index(recupgauche)
+    right = carac.index(recupdroite)
+    aa = message_chiffre[:left]
+    bb = message_chiffre[-right:]
+    s = message_chiffre.replace(aa, "")
+    x = s.replace(bb, "")
+    message_chiffre = x
     code = li[-34:]
     li = li[:-34]
     lu = []
@@ -161,47 +220,4 @@ def menu():
         u=3
         menu()
 
-
-def test():
-    x = random.randint(20, 100)
-    carac = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789é!@ $%^&*()-â=+[{]}\\|'\",:à<ù>/?êè!@#_;.£"
-    cle="Hj/Ojf6"
-    rume=""
-    fin=""
-    for i in range(x):
-        f = random.randint(1, 100)
-        rume += carac[f]
-    j = random.randint(15, x)
-    moitun = rume[:j]
-    moitdeux = rume[j:]
-    fin += moitun
-    fin += cle
-    fin += moitdeux
-    droite = str(len(moitun))
-    gauche = len(moitdeux)
-    gauche += 4
-    gauche = str(gauche)
-    if len(droite) == 1:
-        droite = "0"+droite
-    if len(gauche) == 1:
-        gauche = "0"+gauche  
-    fin+=droite
-    fin+=gauche
-    print(fin)
-#test()
-trc = """)-"7VyMty/+. Y5 URHj/Ojf6M_CJ@1509"""
-def detest(trc):
-    to = ""
-    recup = trc[-4:]
-    right = int(recup[:2])
-    left = int(recup[2:])
-    droite = trc[-left:]
-    gauche = trc[:right]
-    print(trc)
-    print(gauche)
-    print(droite)
-    to = trc.replace(gauche, "")
-    to = to.replace(droite, "")
-    print(to)
-
-detest(trc)
+menu()
